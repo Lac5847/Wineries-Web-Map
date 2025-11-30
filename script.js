@@ -43,3 +43,5 @@ map.on('load', function () {
   });
   map.on('mouseleave', 'points-layer', () => {
     map.getCanvas().style.cursor = '';
+  });
+});
