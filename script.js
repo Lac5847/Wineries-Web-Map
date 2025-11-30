@@ -29,6 +29,8 @@ map.on('load', function () {
             <div>
                 <h3>${properties.Name}</h3>
                 <p><strong>Address:</strong> ${properties.Address}</p>
+                <p><strong>Business Hours:</strong> ${properties.BusinessHours}</p>
+                <p><strong>Business Days:</strong> ${properties.BusinessDays}</p>
             </div>
         `;
     new mapboxgl.Popup()
@@ -41,5 +43,3 @@ map.on('load', function () {
   });
   map.on('mouseleave', 'points-layer', () => {
     map.getCanvas().style.cursor = '';
-  });
-});
