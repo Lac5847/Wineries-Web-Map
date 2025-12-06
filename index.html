@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Wineries of the Napa Valley</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css'>
-</head>
+  <meta charset="utf-8" />
+  <title>Wineries of the Napa Valley — Modern Sidebar</title>
 
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" />
+</head>
 <body>
+
   <div id="app-container">
 
-    <!-- Filter Panel (Left) -->
-    <div id="filter-panel">
-      <div class="filter-category">
-        <h4 class="filter-header">Community</h4>
-        <div class="filter-body" id="community-toggles"></div>
+    <!-- LEFT SIDEBAR: Filters + Listings -->
+    <aside id="sidebar" class="expanded">
+      <div class="sidebar-header">
+        <h1>Wineries</h1>
+        <button id="toggle-sidebar" class="sidebar-collapse" title="Hide/Show sidebar">⟨</button>
       </div>
 
-      <div class="filter-category">
-        <h4 class="filter-header">Business Hours</h4>
-        <div class="filter-body" id="hours-toggles"></div>
+      <div id="filters">
+        <!-- Filter categories (headers added dynamically will be next to .filter-body containers below) -->
+        <section class="filter-category">
+          <h3 class="filter-header">Community <button class="chev">▾</button></h3>
+          <div class="filter-body" id="community-filters"></div>
+        </section>
+
+        <section class="filter-category">
+          <h3 class="filter-header">Business Hours <button class="chev">▾</button></h3>
+          <div class="filter-body" id="hours-filters"></div>
+        </section>
+
+        <section class="filter-category">
+          <h3 class="filter-header">Business Days <button class="chev">▾</button></h3>
+          <div class="filter-body" id="days-filters"></div>
+        </section>
+
+        <section class="filter-category">
+          <h3 class="filter-header">Tours & Tasting <button class="chev">▾</button></h3>
+          <div class="filter-body" id="tours-filters"></div>
+        </section>
+
+        <div class="filters-actions">
+          <button id="clear-filters">Clear filters</button>
+        </div>
       </div>
 
-      <div class="filter-category">
-        <h4 class="filter-header">Business Days</h4>
-        <div class="filter-body" id="days-toggles"></div>
+      <div id="listing-container">
+        <h3>Listings</h3>
+        <div id="feature-listing" class="listing"></div>
       </div>
+    </aside>
 
-      <div class="filter-category">
-        <h4 class="filter-header">Tours & Tasting</h4>
-        <div class="filter-body" id="tours-toggles"></div>
-      </div>
-    </div>
-
-    <!-- Map -->
-    <div id="map"></div>
-
-    <!-- Sidebar Listing (Right) -->
-    <div id="feature-listing" class="listing"></div>
+    <!-- MAP -->
+    <main id="map"></main>
 
   </div>
 
-  <script src='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js'></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

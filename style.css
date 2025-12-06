@@ -1,80 +1,65 @@
-/* App container uses flex layout */
-#app-container {
+/* Basic reset & fonts */
+* { box-sizing: border-box; }
+html,body { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial; color: #222; }
+
+/* App layout */
+#app-container { display: flex; height: 100vh; width: 100vw; overflow: hidden; }
+
+/* Sidebar (left) */
+#sidebar {
+  flex: 0 0 320px;
+  background: #fff;
+  border-right: 1px solid #e2e2e2;
   display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  font-family: sans-serif;
+  flex-direction: column;
+  transition: all 0.28s ease;
+  z-index: 10;
+  padding: 12px;
+}
+#sidebar.collapsed { flex-basis: 0; width: 0; padding: 0; overflow: hidden; border: none; }
+
+/* Header */
+.sidebar-header { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.sidebar-header h1 { font-size:18px; margin:0; }
+.sidebar-collapse {
+  border:none; background:#5b2071; color:white; padding:6px 8px; border-radius:6px; cursor:pointer;
+  font-size:14px;
 }
 
-/* Filter panel on the left */
-#filter-panel {
-  flex: 0 0 260px;
-  background: white;
-  padding: 10px;
-  overflow-y: auto;
-  border-right: 1px solid #ccc;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-  z-index: 3;
+/* Filters scroll area */
+#filters { overflow-y:auto; padding-right:6px; max-height: 46vh; }
+
+/* Filter category */
+.filter-category { margin-bottom: 10px; border-bottom: 1px dashed #eee; padding-bottom: 8px; }
+.filter-header { display:flex; align-items:center; justify-content:space-between; margin:0; padding:6px 0; cursor:pointer; font-size:14px; background:transparent; user-select:none; }
+.filter-header .chev { border:none; background:transparent; font-size:14px; cursor:pointer; }
+
+/* Filter body (checkbox list) */
+.filter-body { padding:6px 0 6px 4px; display:block; }
+.filter-body.collapsed { display:none; }
+
+/* Checkbox style */
+.filter-checkbox { display:flex; align-items:center; gap:8px; padding:4px 0; cursor:pointer; }
+.filter-checkbox input[type="checkbox"] { transform: scale(1.05); }
+
+/* Actions */
+.filters-actions { padding-top:6px; }
+#clear-filters { background:#eee; border:1px solid #ccc; padding:6px 10px; border-radius:6px; cursor:pointer; }
+
+/* Listings area (bottom of sidebar) */
+#listing-container { margin-top:8px; border-top:1px solid #f0f0f0; padding-top:8px; overflow:auto; flex:1; }
+#feature-listing { display:flex; flex-direction:column; gap:6px; }
+.listing-item { padding:8px; border-radius:6px; background:#fafafa; cursor:pointer; border:1px solid #f0f0f0; }
+.listing-item:hover { background:#f4f4f8; }
+
+/* Map full center area */
+#map { flex:1; position:relative; }
+
+/* Small screens: sidebar collapsible by default, toggle visible */
+@media (max-width: 900px) {
+  #sidebar { flex-basis: 320px; position: relative; }
+  #sidebar.collapsed { position: absolute; left: -9999px; }
 }
 
-/* Map takes remaining space */
-#map {
-  flex: 1;
-  position: relative;
-}
-
-/* Listing panel on the right */
-#feature-listing {
-  flex: 0 0 260px;
-  background: white;
-  padding: 10px;
-  overflow-y: auto;
-  border-left: 1px solid #ccc;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-  z-index: 3;
-}
-
-/* Filter buttons */
-.toggle-btn {
-  display: block;
-  width: 100%;
-  margin: 4px 0;
-  padding: 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid #888;
-  background: #eee;
-  text-align: left;
-}
-
-.toggle-btn.active-toggle {
-  background: #c5a9d6;
-}
-
-/* Collapsible category headers */
-.filter-header {
-  cursor: pointer;
-  margin: 0;
-  padding: 6px 0;
-  background: #f0f0f0;
-  border-bottom: 1px solid #ccc;
-  user-select: none;
-}
-
-.filter-body {
-  padding: 4px 0 8px 0;
-}
-
-.filter-body.collapsed {
-  display: none;
-}
-
-/* Listing items */
-.listing div {
-  padding: 4px 0;
-  cursor: pointer;
-}
-.listing div:hover {
-  background: #f0f0f0;
-}
+/* Utility */
+.hidden { display:none; }
