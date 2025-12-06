@@ -4,17 +4,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Wineries of the Napa Valley</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css'>
 </head>
 
 <body>
-  <h1> Wineries of the Napa Valley</h1>
-  <div id="map">
+  <div id="app-container">
+
+    <!-- Filter Panel (Left) -->
+    <div id="filter-panel">
+      <div class="filter-category">
+        <h4 class="filter-header">Community</h4>
+        <div class="filter-body" id="community-toggles"></div>
+      </div>
+
+      <div class="filter-category">
+        <h4 class="filter-header">Business Hours</h4>
+        <div class="filter-body" id="hours-toggles"></div>
+      </div>
+
+      <div class="filter-category">
+        <h4 class="filter-header">Business Days</h4>
+        <div class="filter-body" id="days-toggles"></div>
+      </div>
+
+      <div class="filter-category">
+        <h4 class="filter-header">Tours & Tasting</h4>
+        <div class="filter-body" id="tours-toggles"></div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div id="map"></div>
+
+    <!-- Sidebar Listing (Right) -->
+    <div id="feature-listing" class="listing"></div>
+
   </div>
+
   <script src='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js'></script>
-  <script src="./script.js"></script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
