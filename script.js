@@ -31,6 +31,10 @@ map.on('load', function () {
                 <p><strong>Address:</strong> ${properties.Address}</p>
                 <p><strong>Business Hours:</strong> ${properties.BusinessHours}</p>
                 <p><strong>Business Days:</strong> ${properties.BusinessDays}</p>
+                <p><strong>Tours and Tasting:</strong> ${properties.ToursandTasting}</p>
+                <p><strong>Community:</strong>: ${properties.Community}</p>
+                <p><strong>Link:</strong>: ${properties.link}</p>
+
             </div>
         `;
     new mapboxgl.Popup()
