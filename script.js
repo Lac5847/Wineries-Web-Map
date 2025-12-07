@@ -142,7 +142,7 @@ function makePopupHtml(props){
     ${props.BusinessHours?`<div><strong>Hours:</strong> ${props.BusinessHours}</div>`:''}
     ${props.BusinessDays?`<div><strong>Days:</strong> ${props.BusinessDays}</div>`:''}
     ${props.ToursandTasting?`<div><strong>Tours & Tasting:</strong> ${props.ToursandTasting}</div>`:''}
-    ${props.link?`<div style="margin-top:6px"><a href="${props.link}" target="_blank" rel="noopener">Website</a></div>`:''}
+    ${props.Link?`<div style="margin-top:6px"><a href="${props.Link}" target="_blank" rel="noopener">Website</a></div>`:''}
   </div>`;
 }
 
