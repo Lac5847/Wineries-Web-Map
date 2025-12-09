@@ -7,7 +7,7 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
-const communityColors = {
+const AreaColors = {
   "American Canyon": "#DB968A",
   "Angwin": "#97A305",
   "Calistoga": "#e41a1c",
@@ -17,16 +17,17 @@ const communityColors = {
   "Pope Valley": "#7A1725",
   "Rutherford": "#4daf4a",
   "St. Helena": "#377eb8",
-  "Yountville": "#984ea3"
+  "Yountville": "#984ea3",
+  "Zinfandel": "#305361"
 };
 // Panels & DOM
 let allFeatures = [];
-const activeFilters = { Community: new Set(), BusinessHours: new Set(), BusinessDays: new Set(), ToursandTasting: new Set() };
+const activeFilters = { Area: new Set(), BusinessHours: new Set(), BusinessDays: new Set(), ToursandTasting: new Set() };
 const listingEl = document.getElementById('feature-listing');
 const sidebar = document.getElementById('sidebar');
 
 const categories = [
-  { prop: 'Community', containerId: 'community-filters' },
+  { prop: 'Area', containerId: 'Area-filters' },
   { prop: 'BusinessHours', containerId: 'hours-filters' },
   { prop: 'BusinessDays', containerId: 'days-filters' },
   { prop: 'ToursandTasting', containerId: 'tours-filters' }
@@ -49,7 +50,7 @@ fetch('https://raw.githubusercontent.com/Lac5847/Wineries-Web-Map/refs/heads/mai
       paint: {
   'circle-color': [
     'match',
-    ['get', 'Community'],
+    ['get', 'Area'],
 
     // Dynamically insert all your communities + colors
     
@@ -63,6 +64,7 @@ fetch('https://raw.githubusercontent.com/Lac5847/Wineries-Web-Map/refs/heads/mai
     "Rutherford", "#4daf4a",
     "St. Helena", "#377eb8",
     "Yountville", "#984ea3",
+    "Zinfandel", "#305361",
   "#5B2071"
   ],
   'circle-radius': 6,
@@ -88,9 +90,9 @@ fetch('https://raw.githubusercontent.com/Lac5847/Wineries-Web-Map/refs/heads/mai
 
 function buildLegend() {
   const legend = document.getElementById('legend');
-  legend.innerHTML = "<strong>Communities</strong><br>";
+  legend.innerHTML = "<strong>Area</strong><br>";
 
-  Object.entries(communityColors).forEach(([community, color]) => {
+  Object.entries(AreaColors).forEach(([Area, color]) => {
     const item = document.createElement('div');
     item.className = "legend-item";
 
@@ -99,7 +101,7 @@ function buildLegend() {
     swatch.style.background = color;
 
     const label = document.createElement('span');
-    label.textContent = community;
+    label.textContent = Area;
 
     item.appendChild(swatch);
     item.appendChild(label);
@@ -186,7 +188,7 @@ function updateListing(features){
   features.forEach(f=>{
     const div = document.createElement('div');
     div.className='listing-item';
-    div.innerHTML=`<strong>${f.properties.Name}</strong><div style="font-size:12px;color:#666">${f.properties.Community||''}</div>`;
+    div.innerHTML=`<strong>${f.properties.Name}</strong><div style="font-size:12px;color:#666">${f.properties.Area||''}</div>`;
     div.addEventListener('click',()=>{ map.flyTo({ center:f.geometry.coordinates, zoom:14, speed:0.8 }); popup.setLngLat(f.geometry.coordinates).setHTML(makePopupHtml(f.properties)).addTo(map); });
     listingEl.appendChild(div);
   });
@@ -196,7 +198,7 @@ function makePopupHtml(props){
   return `<div style="font-family:Inter, Arial">
     <h3 style="margin:0 0 6px 0">${props.Name||'Winery'}</h3>
     ${props.Address?`<div><strong>Address:</strong> ${props.Address}</div>`:''}
-    ${props.Community?`<div><strong>Community:</strong> ${props.Community}</div>`:''}
+    ${props.Area?`<div><strong>Area:</strong> ${props.Area}</div>`:''}
     ${props.BusinessHours?`<div><strong>Hours:</strong> ${props.BusinessHours}</div>`:''}
     ${props.BusinessDays?`<div><strong>Days:</strong> ${props.BusinessDays}</div>`:''}
     ${props.ToursandTasting?`<div><strong>Tours & Tasting:</strong> ${props.ToursandTasting}</div>`:''}
