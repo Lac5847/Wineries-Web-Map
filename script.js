@@ -7,6 +7,18 @@ const map = new mapboxgl.Map({
     zoom: 10
 });
 
+const communityColors = {
+  "American Canyon": "#DB968A",
+  "Angwin": "#97A305",
+  "Calistoga": "#e41a1c",
+  "Deer Park": "#38177A",
+  "Napa": "#a65628",
+  "Oakville": "#ff7f00",
+  "Pope Valley": "#7A1725",
+  "Rutherford": "#4daf4a",
+  "St. Helena": "#377eb8",
+  "Yountville": "#984ea3"
+};
 // Panels & DOM
 let allFeatures = [];
 const activeFilters = { Community: new Set(), BusinessHours: new Set(), BusinessDays: new Set(), ToursandTasting: new Set() };
@@ -34,7 +46,31 @@ fetch('https://raw.githubusercontent.com/Lac5847/Wineries-Web-Map/refs/heads/mai
       id:'points-layer',
       type:'circle',
       source:'points-data',
-      paint:{ 'circle-color':'#5B2071', 'circle-radius':6, 'circle-stroke-width':2, 'circle-stroke-color':'#000000' }
+      paint: {
+  'circle-color': [
+    'match',
+    ['get', 'Community'],
+
+    // Dynamically insert all your communities + colors
+    
+    "American Canyon", "#DB968A",
+    "Angwin", "#97A305",
+    "Calistoga", "#e41a1c",
+    "Deer Park", "#38177A",
+    "Napa", "#a65628",
+    "Oakville", "#ff7f00",
+    "Pope Valley", "#7A1725",
+    "Rutherford", "#4daf4a",
+    "St. Helena", "#377eb8",
+    "Yountville", "#984ea3",
+  "#5B2071"
+  ],
+  'circle-radius': 6,
+  'circle-stroke-width': 2,
+  'circle-stroke-color': '#000000'
+}
+
+
     });
 
     buildFilterUI();
@@ -46,8 +82,30 @@ fetch('https://raw.githubusercontent.com/Lac5847/Wineries-Web-Map/refs/heads/mai
     });
     map.on('mouseenter','points-layer',()=>map.getCanvas().style.cursor='pointer');
     map.on('mouseleave','points-layer',()=>map.getCanvas().style.cursor='');
+    buildLegend();
   });
 });
+
+function buildLegend() {
+  const legend = document.getElementById('legend');
+  legend.innerHTML = "<strong>Communities</strong><br>";
+
+  Object.entries(communityColors).forEach(([community, color]) => {
+    const item = document.createElement('div');
+    item.className = "legend-item";
+
+    const swatch = document.createElement('span');
+    swatch.className = "swatch";
+    swatch.style.background = color;
+
+    const label = document.createElement('span');
+    label.textContent = community;
+
+    item.appendChild(swatch);
+    item.appendChild(label);
+    legend.appendChild(item);
+  });
+}
 
 // Filter UI
 function buildFilterUI(){

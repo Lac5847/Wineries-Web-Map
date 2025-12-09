@@ -86,3 +86,30 @@ h1 {
     font-size: 24px;
     color: #333;
 }
+#legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 12px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-size: 13px;
+  z-index: 20;
+  line-height: 1.5;
+  max-width: 200px;
+}
+
+#legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+#legend .swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid #333;
+}
