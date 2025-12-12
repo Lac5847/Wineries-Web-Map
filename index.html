@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Napa Valley Wineries</title>
@@ -7,55 +8,59 @@
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" />
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1> Wineries of the Napa Valley</h1>
-<div id="app-container">
+  <h1> Wineries of the Napa Valley</h1>
+  <div id="app-container">
 
-  <!-- LEFT PANEL: Filters + Listings -->
-  <aside id="sidebar" class="expanded">
-    <div class="sidebar-header">
-      <h2>Filter By Catagory</h2>
-      <button id="toggle-sidebar" class="sidebar-collapse" title="Hide/Show sidebar">⟨</button>
-    </div>
-
-    <div id="filters">
-      <section class="filter-category">
-        <h3 class="filter-header">Area <button class="chev">▾</button></h3>
-        <div class="filter-body" id="Area-filters"></div>
-      </section>
-      <section class="filter-category">
-        <h3 class="filter-header">Business Days <button class="chev">▾</button></h3>
-        <div class="filter-body" id="days-filters"></div>
-      </section>
-
-      <section class="filter-category">
-        <h3 class="filter-header">Tours & Tasting <button class="chev">▾</button></h3>
-        <div class="filter-body" id="tours-filters"></div>
-      </section>
-
-      <div class="filters-actions">
-        <button id="clear-filters">Clear filters</button>
+    <!-- LEFT PANEL: Filters + Listings -->
+    <aside id="sidebar" class="expanded">
+      <div class="sidebar-header">
+        <h2>Filter By Catagory</h2>
+        <button id="toggle-sidebar" class="sidebar-collapse" title="Hide/Show sidebar">⟨</button>
       </div>
-    </div>
 
-    <div id="listing-container">
-      <h3>Listings</h3>
-      <div id="feature-listing" class="listing"></div>
-    </div>
-  </aside>
+      <div id="filters">
+        <section class="filter-category">
+          <h3 class="filter-header">Area <button class="chev">▾</button></h3>
+          <div class="filter-body" id="Area-filters"></div>
+        </section>
 
-  <!-- MAP AREA -->
-  <main id="map"></main>
 
-  <!-- Floating button to restore sidebar when collapsed -->
-  <button id="show-sidebar-btn" title="Show filters & listings">☰</button>
+        <section class="filter-category">
+          <h3 class="filter-header">Business Days <button class="chev">▾</button></h3>
+          <div class="filter-body" id="days-filters"></div>
+        </section>
 
-  <div id="legend" class="legend"></div>
+        <section class="filter-category">
+          <h3 class="filter-header">Tours & Tasting <button class="chev">▾</button></h3>
+          <div class="filter-body" id="tours-filters"></div>
+        </section>
 
-</div>
+        <div class="filters-actions">
+          <button id="clear-filters">Clear filters</button>
+        </div>
+      </div>
 
-<script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
-<script src="script.js"></script>
+      <div id="listing-container">
+        <h3>Listings</h3>
+        <div id="feature-listing" class="listing"></div>
+      </div>
+    </aside>
+
+    <!-- MAP AREA -->
+    <main id="map"></main>
+
+    <!-- Floating button to restore sidebar when collapsed -->
+    <button id="show-sidebar-btn" title="Show filters & listings">☰</button>
+
+    <div id="legend" class="legend"></div>
+
+  </div>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
